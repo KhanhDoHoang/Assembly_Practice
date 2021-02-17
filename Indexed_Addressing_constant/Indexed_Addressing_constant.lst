@@ -1,0 +1,27 @@
+
+as12, an absolute assembler for Motorola MCU's, version 1.2h
+
+                        ;Indexed_Addressing.asm
+                        
+1000                            org     $1000
+1000 15 02 9f 11 98     Array   db      $15,$02,$9F,$11,$98
+                        
+2000                            org     $2000
+                        ;Indexed Addressing mode with constant offset
+                        
+2000 ce 10 00                   ldx 	#Array
+2003 a6 00                      ldaa    0,X
+2005 e6 03                      ldab    3,X
+2007 ce 10 02                   ldx     #Array+2
+200a a6 1f                      ldaa    -1,X
+                                
+200c cd 0f ef                   ldy     #$0FEF
+200f a6 ed                      ldaa    B,Y
+                                
+2011 3f                         swi
+                                end
+                                
+
+Executed: Thu Jul 16 12:04:33 2020
+Total cycles: 28, Total bytes: 23
+Total errors: 0, Total warnings: 0
